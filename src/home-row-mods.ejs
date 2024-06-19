@@ -1,0 +1,96 @@
+<%# vim:set filetype=dts: %>
+
+  /*
+  ╭──────────────────────────────────────────────────────────╮
+  │ Home Row Mods                                            │
+  ╰──────────────────────────────────────────────────────────╯
+  */
+
+  #ifndef HOMEY_HOLDING_TYPE
+  #define HOMEY_HOLDING_TYPE "tap-preferred"
+  #endif
+
+  #ifndef HOMEY_HOLDING_TIME
+  #define HOMEY_HOLDING_TIME 270 // TAPPING_TERM + ALLOW_CROSSOVER_AFTER
+  #endif
+
+  #ifndef HOMEY_STREAK_DECAY
+  #define HOMEY_STREAK_DECAY 170 // global-quick-tap-ms
+  #endif
+
+  #ifndef HOMEY_REPEAT_DECAY
+  #define HOMEY_REPEAT_DECAY 300 // "tap then hold" for key auto-repeat
+  #endif
+
+  #ifndef SHIFT_HOLDING_TYPE
+  #define SHIFT_HOLDING_TYPE "tap-preferred"
+  #endif
+
+  #ifndef SHIFT_HOLDING_TIME
+  #define SHIFT_HOLDING_TIME 170
+  #endif
+
+  #ifndef SHIFT_STREAK_DECAY
+  #define SHIFT_STREAK_DECAY 70 // global-quick-tap-ms
+  #endif
+
+  #ifndef SHIFT_REPEAT_DECAY
+  #define SHIFT_REPEAT_DECAY 300 // "tap then hold" for key auto-repeat
+  #endif
+
+  // Home row mod-tap keys for all except index fingers
+
+  homey_left: miryoku_home_row_mods_left_hand {
+    compatible = "zmk,behavior-hold-tap";
+    label = "HOME_ROW_MODS_LEFT_HAND";
+    flavor = HOMEY_HOLDING_TYPE;
+    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
+    hold-trigger-on-release; // wait for other home row mods
+    tapping-term-ms = <HOMEY_HOLDING_TIME>;
+    quick-tap-ms = <HOMEY_REPEAT_DECAY>;
+    require-prior-idle-ms = <HOMEY_STREAK_DECAY>;
+    #binding-cells = <2>;
+    bindings = <&kp>, <&kp>;
+  };
+
+  homey_right: miryoku_home_row_mods_right_hand {
+    compatible = "zmk,behavior-hold-tap";
+    label = "HOME_ROW_MODS_RIGHT_HAND";
+    flavor = HOMEY_HOLDING_TYPE;
+    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
+    hold-trigger-on-release; // wait for other home row mods
+    tapping-term-ms = <HOMEY_HOLDING_TIME>;
+    quick-tap-ms = <HOMEY_REPEAT_DECAY>;
+    require-prior-idle-ms = <HOMEY_STREAK_DECAY>;
+    #binding-cells = <2>;
+    bindings = <&kp>, <&kp>;
+  };
+
+  // Special home row mod-tap keys for the index fingers
+
+  shift_left: miryoku_home_row_mods_left_shift_shift {
+    compatible = "zmk,behavior-hold-tap";
+    label = "HOME_ROW_MODS_LEFT_SHIFT_SHIFT";
+    flavor = SHIFT_HOLDING_TYPE;
+    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
+    // hold-trigger-on-release; // don't wait for other mods
+    tapping-term-ms = <SHIFT_HOLDING_TIME>;
+    quick-tap-ms = <SHIFT_REPEAT_DECAY>;
+    require-prior-idle-ms = <SHIFT_STREAK_DECAY>;
+    #binding-cells = <2>;
+    bindings = <&kp>, <&kp>;
+  };
+
+  shift_right: miryoku_home_row_mods_right_shift_shift {
+    compatible = "zmk,behavior-hold-tap";
+    label = "HOME_ROW_MODS_RIGHT_SHIFT_SHIFT";
+    flavor = SHIFT_HOLDING_TYPE;
+    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
+    // hold-trigger-on-release; // don't wait for other mods
+    tapping-term-ms = <SHIFT_HOLDING_TIME>;
+    quick-tap-ms = <SHIFT_REPEAT_DECAY>;
+    require-prior-idle-ms = <SHIFT_STREAK_DECAY>;
+    #binding-cells = <2>;
+    bindings = <&kp>, <&kp>;
+  };
+

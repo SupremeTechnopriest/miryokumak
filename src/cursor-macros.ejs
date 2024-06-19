@@ -1,0 +1,75 @@
+<%# vim:set filetype=dts: %>
+
+  /*
+  ╭──────────────────────────────────────────────────────────╮
+  │ Cursor Macros                                            │
+  ╰──────────────────────────────────────────────────────────╯
+  */
+  
+  #ifndef SELECT_WORD_DELAY
+  #define SELECT_WORD_DELAY 1
+  #endif
+
+  // Removes selection
+
+  ZMK_MACRO(select_none,
+    wait-ms = <SELECT_WORD_DELAY>;
+    tap-ms = <SELECT_WORD_DELAY>;
+    bindings = <&kp DOWN &kp UP &kp RIGHT &kp LEFT>;
+  )
+
+  // Select a word (jumps to next word upon each successive invocation)
+
+  ZMK_MACRO(select_word_right,
+    wait-ms = <SELECT_WORD_DELAY>;
+    tap-ms = <SELECT_WORD_DELAY>;
+    bindings = <&kp LC(RIGHT) &kp LC(LEFT) &kp LC(LS(RIGHT))>;
+  )
+
+  ZMK_MACRO(select_word_left,
+    wait-ms = <SELECT_WORD_DELAY>;
+    tap-ms = <SELECT_WORD_DELAY>;
+    bindings = <&kp LC(LEFT) &kp LC(RIGHT) &kp LC(LS(LEFT))>;
+  )
+
+  // Extend current selection by one word
+
+  ZMK_MACRO(extend_word_right,
+    wait-ms = <SELECT_WORD_DELAY>;
+    tap-ms = <SELECT_WORD_DELAY>;
+    bindings = <&kp LC(LS(RIGHT))>;
+  )
+  
+  ZMK_MACRO(extend_word_left,
+    wait-ms = <SELECT_WORD_DELAY>;
+    tap-ms = <SELECT_WORD_DELAY>;
+    bindings = <&kp LC(LS(LEFT))>;
+  )
+
+  // Select current line
+
+  ZMK_MACRO(select_line_right,
+    wait-ms = <SELECT_WORD_DELAY>;
+    tap-ms = <SELECT_WORD_DELAY>;
+    bindings = <&kp HOME &kp LS(END)>;
+  )
+
+  ZMK_MACRO(select_line_left,
+    wait-ms = <SELECT_WORD_DELAY>;
+    tap-ms = <SELECT_WORD_DELAY>;
+    bindings = <&kp END &kp LS(HOME)>;
+  )
+
+  // Extend current selection by one line
+
+  ZMK_MACRO(extend_line_right,
+    wait-ms = <SELECT_WORD_DELAY>;
+    tap-ms = <SELECT_WORD_DELAY>;
+    bindings = <&kp LS(DOWN) &kp LS(END)>;
+  )
+
+  ZMK_MACRO(extend_line_left,
+    wait-ms = <SELECT_WORD_DELAY>;
+    tap-ms = <SELECT_WORD_DELAY>;
+    bindings = <&kp LS(UP) &kp LS(HOME)>;
+  )

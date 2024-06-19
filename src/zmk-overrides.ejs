@@ -1,0 +1,19 @@
+<%# vim:set filetype=dts: %>
+
+  /*
+  ╭──────────────────────────────────────────────────────────╮
+  │ ZMK global overrides                                     │
+  ╰──────────────────────────────────────────────────────────╯
+  */
+
+  // CapsWord - ported from Pascal Getreuer's extension for QMK
+  // - https://zmk.dev/docs/behaviors/caps-word
+  // - https://getreuer.info/posts/keyboards/caps-word/index.html
+ 
+  behavior_caps_word {
+    continue-list = <
+      UNDERSCORE MINUS
+      BACKSPACE DELETE
+      N1 N2 N3 N4 N5 N6 N7 N8 N9 N0
+    >;
+  };

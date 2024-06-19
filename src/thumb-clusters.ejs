@@ -1,0 +1,51 @@
+<%# vim:set filetype=dts: %>
+
+  /*
+  ╭──────────────────────────────────────────────────────────╮
+  │ Thumb cluster hold-tap keys for Miryoku layers           │
+  ╰──────────────────────────────────────────────────────────╯
+  */
+
+  #ifndef THUMB_HOLDING_TYPE
+  #define THUMB_HOLDING_TYPE "balanced"
+  #endif
+
+  #ifndef THUMB_HOLDING_TIME
+  #define THUMB_HOLDING_TIME 200
+  #endif
+
+  #ifndef THUMB_REPEAT_DECAY
+  #define THUMB_REPEAT_DECAY 300 // "tap then hold" for key auto-repeat
+  #endif
+
+  #ifndef SPACE_HOLDING_TIME
+  #define SPACE_HOLDING_TIME 170
+  #endif
+
+  #ifndef SPACE_REPEAT_DECAY
+  #define SPACE_REPEAT_DECAY 200 // "tap then hold" for key auto-repeat
+  #endif
+
+  thumb: miryoku_thumb_layer {
+    compatible = "zmk,behavior-hold-tap";
+    label = "MIRYOKU_THUMB_LAYER";
+    flavor = THUMB_HOLDING_TYPE;
+    tapping-term-ms = <THUMB_HOLDING_TIME>;
+    quick-tap-ms = <THUMB_REPEAT_DECAY>; // enable repeat
+    //global-quick-tap; // no typing streak
+    //retro-tap; // don't allow slow (hold-like) taps
+    #binding-cells = <2>;
+    bindings = <&mo>, <&kp>;
+  };
+
+  space: miryoku_thumb_layer_spacebar {
+    compatible = "zmk,behavior-hold-tap";
+    label = "MIRYOKU_THUMB_LAYER_SPACEBAR";
+    flavor = THUMB_HOLDING_TYPE;
+    tapping-term-ms = <SPACE_HOLDING_TIME>;
+    quick-tap-ms = <SPACE_REPEAT_DECAY>; // enable repeat
+    //global-quick-tap; // no typing streak
+    retro-tap; // allow slow (hold-like) taps
+    #binding-cells = <2>;
+    bindings = <&mo>, <&kp>;
+  };

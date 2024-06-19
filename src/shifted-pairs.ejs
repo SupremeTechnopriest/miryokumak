@@ -1,0 +1,18 @@
+<%# vim:set filetype=dts: %>
+
+  /*
+  ╭──────────────────────────────────────────────────────────╮
+  │ Custom Shifted Pairs                                     │
+  ╰──────────────────────────────────────────────────────────╯
+  */
+
+  // Shift + CapsWord = CapsLock
+
+  cappy: capsword_and_capslock {
+    compatible = "zmk,behavior-mod-morph";
+    label = "CAPSWORD_AND_CAPSLOCK";
+    #binding-cells = <0>;
+    bindings = <&caps_word>, <&kp CAPSLOCK>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+  };
+

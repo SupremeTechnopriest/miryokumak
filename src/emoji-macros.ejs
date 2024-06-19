@@ -1,0 +1,61 @@
+<%# vim:set filetype=dts: %>
+
+  /*
+  ╭──────────────────────────────────────────────────────────╮
+  │ Emoji Macros                                             │
+  ╰──────────────────────────────────────────────────────────╯
+  */
+
+  #ifndef UNICODE_TAP_DELAY
+  #define UNICODE_TAP_DELAY 1
+  #endif
+<%
+const keycodeFromHexByte = hexbyte => /\d/.test(hexbyte) 
+  ? `N${hexbyte}`
+  : hexbyte.toUpperCase()
+
+const keystrokeFromKeycode = keycode => `&kp ${keycode}`
+
+function keystrokesFromUnicode (char) {
+  const codePoint = char.codePointAt(0).toString(16)
+  return codePoint.split('').map(hexByte => {
+    const keycode = keycodeFromHexByte(hexByte)
+    return keystrokeFromKeycode(keycode)
+  }).join(' ')
+}
+
+for (const [id, emoji] of Object.entries(emojis)) { %>
+  // <%- emoji %>: <%- id %>
+
+  // Linux
+  ZMK_MACRO(
+    linux_emoji_<%- id %>,
+    wait-ms = <UNICODE_TAP_DELAY>;
+    tap-ms = <UNICODE_TAP_DELAY>;
+    bindings = <&kp LC(LS(U)) <%- keystrokesFromUnicode(emoji) %> &kp ENTER>;
+  )
+
+  // OSX
+  ZMK_MACRO(
+    osx_emoji_<%- id %>,
+    wait-ms = <UNICODE_TAP_DELAY>;
+    tap-ms = <UNICODE_TAP_DELAY>;
+    bindings 
+      = <&macro_press &kp LALT>
+      , <&macro_tap <%- keystrokesFromUnicode(emoji) %>>
+      , <&macro_release &kp LALT>
+      ;
+  )
+
+  // Windows
+  ZMK_MACRO(
+    win_emoji_<%- id %>,
+    wait-ms = <UNICODE_TAP_DELAY>;
+    tap-ms = <UNICODE_TAP_DELAY>;
+    bindings 
+      = <&macro_press &kp LALT>
+      , <&macro_tap &kp KP_PLUS <%- keystrokesFromUnicode(emoji) %>>
+      , <&macro_release &kp LALT>
+      ;
+  )
+<% } %>

@@ -1,0 +1,154 @@
+#
+# Gitmoji
+#
+# This is a subset of the gitmoji specification.
+# It contains the symbols that I use most. The whole spec
+# would take up both halves of the board, and I don't use most
+# of the specification anyway. I have left the ommitted symbols
+# commented out so you can swap them in if you want.
+
+# Function Row (Deployment Commits)
+initial: 🎉
+package: 📦️
+tags: 🔖
+merge: 🔀
+revert: ⏪️
+
+# Number Row (Debugging)
+warnings: 🚨
+failing_test: 🧪
+logs_add: 🔊
+logs_remove: 🔇
+experiments: ⚗️
+exploration: 🧐
+
+# Upper Row (Commit Types)
+docs: 📝
+comments: 💡
+types: 🏷️
+hotfix: 🚑️
+typeo: ✏️
+wip: 🚧
+
+# Home Row (Common Commits)
+performance: ⚡️
+feature: ✨
+bug: 🐞 # My custom bug, spec defines 🐛
+remove: 🔥
+tests: ✅
+structure: 🎨
+
+# Lower Row (Configurations)
+secrets: 🔐
+configs: 🔧
+scripts: 🔨
+experience: 🧑‍💻
+ignore: 🙈
+sponsor: 💸
+
+# Bottom Row (Dependencies)
+pin: 📌
+add_dep: ➕
+remove_dep: ➖
+upgrade: ⬆️
+downgrade: ⬇️
+
+# Unused
+
+# deploy: 🚀
+# style: 💄
+# security: 🔒️
+# ci: 💚
+# build_system: 👷
+# analytics: 📈
+# refactor: ♻️
+# i18n: 🌐
+# bad: 💩
+# external: 👽️
+# move: 🚚
+# license: 📄
+# database: 🗃️
+# breaking: 💥
+# assets: 🍱
+# accessability: ♿️
+# drunk: 🍻
+# text: 💬
+# contributors: 👥
+# ux: 🚸
+# architecture: 🏗️
+# responsive: 📱
+# mock: 🤡
+# egg: 🥚
+# snapshots: 📸
+# seo: 🔍️
+# seed: 🌱
+# flags: 🚩
+# catch: 🥅
+# animations: 💫
+# deprecate: 🗑️
+# auth: 🛂
+# fix: 🩹
+# dead_code: ⚰️
+# business: 👔
+# health: 🩺
+# infra: 🧱
+# thread: 🧵
+# validation: 🦺
+
+#
+# Reactions
+#
+
+# Function Row (Time Symbols)
+new_moon: 🌑
+waxing_crescent_moon: 🌒
+first_quarter_moon: 🌓
+waxing_gibbous_moon: 🌔
+full_moon: 🌕
+
+# Number Row (Event Symbols)
+rocket: 🚀
+fire: 🔥
+dizzy: 💫
+anger: 💢
+heart: ❤️
+tada: 🎉
+
+# Upper Row (Negative Smiles)
+think: 🤔
+shock: 😱
+sweat: 😰
+sad: 😔
+neutral: 😐
+smirk: 😏
+
+# Home Row (Positive Smiles)
+mind_blown: 🤯
+lol: 😂
+sweat_smile: 😅
+smile: 🙂
+party: 🥳
+cool: 😎
+
+# Lower Row (Status Symbols)
+siren: 🚨
+megaphone: 📣
+question: ❓
+x: ❌
+warn: ⚠️
+check: ✅
+
+# Bottom Row (Action Symbols)
+crown: 👑
+strong: 💪
+boom: 💥
+sparkle: ✨
+look: 👀
+
+# Thumb Cluster (Hands)
+ok: 👌
+up: ☝️
+yes: 👍
+thanks: 🙏
+hands_raised: 🙌
+no: 👎

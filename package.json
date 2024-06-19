@@ -1,0 +1,15 @@
+{
+  "name": "miryokumak",
+  "description": "Miroku Halmak Layout for Glove80",
+  "repository": "https://github.com/supremetechnopriest/mirokumak.git",
+  "scripts": {
+    "build": "bun scripts/build.ts"
+  },
+  "devDependencies": {
+    "bun-types": "^1.0.14",
+    "ejs": "^3.1.9"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
