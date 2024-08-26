@@ -3,6 +3,7 @@
 // █ █▀▄ █▀▀   █▀▄▀█ ▄▀█ █▀▀ █▀█ █▀█ █▀ 
 // █ █▄▀ ██▄   █░▀░█ █▀█ █▄▄ █▀▄ █▄█ ▄█ 
 
+
 FAST_MACRO1(vim_leader, \
   &macro_tap &kp SPACE \
   &macro_param_1to1 \
@@ -23,6 +24,7 @@ FAST_MACRO1(vim_split, \
   &kp MACRO_PLACEHOLDER \
 )
 
+
 FAST_MACRO1(tmux_leader,
   &macro_press &kp LCTRL \
   &macro_tap &kp SPACE \
@@ -30,3 +32,6 @@ FAST_MACRO1(tmux_leader,
   &macro_param_1to1 \
   &macro_tap &kp MACRO_PLACEHOLDER 
 )
+
+FAST_SWITCHING_THUMB_LAYER_TAP(ftvs, &vim_split)
+FAST_SWITCHING_THUMB_LAYER_TAP(fttl, &tmux_leader)

@@ -3,25 +3,51 @@
 // █▀▀ █▀▄▀█ █▀█ ░░█ █   █▀▄▀█ ▄▀█ █▀▀ █▀█ █▀█ █▀ 
 // ██▄ █░▀░█ █▄█ █▄█ █   █░▀░█ █▀█ █▄▄ █▀▄ █▄█ ▄█ 
 
-<% for (const [id, keystrokes] of Object.entries(emojis)) { %>
 
-FAST_MACRO(nix_emoji_<%- id %>, \
+#define UNICODE_NIX(KEYSTROKES) \
   &macro_tap &kp LC(LS(U)) \
-  &macro_tap <%- keystrokes %> \
-  &macro_tap &kp ENTER \
-)
+  &macro_tap KEYSTROKES \
+  &macro_tap &kp ENTER
 
-FAST_MACRO(osx_emoji_<%- id %>, \
+#define UNICODE_OSX(KEYSTROKES) \
   &macro_press &kp LALT \
-  &macro_tap <%- keystrokes %> \
-  &macro_release &kp LALT \
-)
+  &macro_tap KEYSTROKES \
+  &macro_release &kp LALT
 
-FAST_MACRO(win_emoji_<%- id %>, \
+#define UNICODE_WIN(KEYSTROKES) \
   &macro_press &kp LALT \
   &macro_tap &kp KP_PLUS \
-  &macro_tap <%- keystrokes %> \
-  &macro_release &kp LALT \
+  &macro_tap KEYSTROKES \
+  &macro_release &kp LALT
+<% for (const [id, keystrokes] of Object.entries(emojis)) { 
+  if (Array.isArray(keystrokes)) { -%> 
+FAST_MACRO(nix_emoji_<%- id %>_0, UNICODE_NIX(<%- keystrokes[0] %>))
+FAST_MACRO(nix_emoji_<%- id %>_1, UNICODE_NIX(<%- keystrokes[1] %>))
+MOD_MORPH(nix_emoji_<%- id %>, \
+  &nix_emoji_<%- id %>_0, \
+  &nix_emoji_<%- id %>_1, \
+  MOD_LSFT|MOD_RSFT \
 )
 
-<% } %>
+FAST_MACRO(osx_emoji_<%- id %>_0, UNICODE_OSX(<%- keystrokes[0] %>))
+FAST_MACRO(osx_emoji_<%- id %>_1, UNICODE_OSX(<%- keystrokes[1] %>))
+MOD_MORPH(osx_emoji_<%- id %>, \
+  &osx_emoji_<%- id %>_0, \
+  &osx_emoji_<%- id %>_1, \
+  MOD_LSFT|MOD_RSFT \
+)
+
+FAST_MACRO(win_emoji_<%- id %>_0, UNICODE_WIN(<%- keystrokes[0] %>))
+FAST_MACRO(win_emoji_<%- id %>_1, UNICODE_WIN(<%- keystrokes[1] %>))
+MOD_MORPH(win_emoji_<%- id %>, \
+  &win_emoji_<%- id %>_0, \
+  &win_emoji_<%- id %>_1, \
+  MOD_LSFT|MOD_RSFT \
+)
+
+  <% } else { -%> 
+FAST_MACRO(nix_emoji_<%- id %>, UNICODE_NIX(<%- keystrokes %>))
+FAST_MACRO(osx_emoji_<%- id %>, UNICODE_OSX(<%- keystrokes %>))
+FAST_MACRO(win_emoji_<%- id %>, UNICODE_WIN(<%- keystrokes %>))
+  <% } -%>
+<% } -%>

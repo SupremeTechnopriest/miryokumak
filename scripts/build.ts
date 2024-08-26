@@ -1,8 +1,7 @@
 import { join } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import { renderFile } from 'ejs'
-import { gitmoji, reactions } from '../src/emoji.toml'
-
+import { characters } from '../src/emoji.toml'
 
 const keycodeFromHexByte = (hexbyte: string) => /\d/.test(hexbyte) 
   ? `N${hexbyte}`
@@ -11,21 +10,23 @@ const keycodeFromHexByte = (hexbyte: string) => /\d/.test(hexbyte)
 const keystrokeFromKeycode = (keycode: string) => `&kp ${keycode}`
 
 function keystrokesFromUnicode (char: string) {
-  const codePoint = char.codePointAt(0)?.toString(16)
+  const codePoint = char.codePointAt(0)?.toString(16) ?? ''
   return codePoint?.split('').map(hexByte => {
     const keycode = keycodeFromHexByte(hexByte)
     return keystrokeFromKeycode(keycode)
   }).join(' ')
 }
 
-const emojis: Record<string, string> = {}
+const emojis: Record<string, string | string[]> = {}
 const unicode = [
-  ...Object.entries(gitmoji.active),
-  ...Object.entries(reactions)
+  ...Object.entries(characters)
 ]
 
 for (const [key, value] of unicode) {
-  const keystrokes = keystrokesFromUnicode(value as string)
+  const keystrokes = Array.isArray(value)
+    ? value.map(keystrokesFromUnicode)
+    : keystrokesFromUnicode(value as string)
+
   if (keystrokes) emojis[key] = keystrokes
 }
 

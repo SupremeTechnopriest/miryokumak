@@ -3,19 +3,6 @@
 // █░█ █▄░█ █▀▄ █▀▀ █▀█ █▀▀ █░░ █▀█ █░█░█ 
 // █▄█ █░▀█ █▄▀ ██▄ █▀▄ █▄█ █▄▄ █▄█ ▀▄▀▄▀ 
 
-/* Empty underglow layer definition (for copy-paste)
-    mylayer {
-      bindings = <
-        ______ ______ ______ ______ ______                                                          ______ ______ ______ ______ ______
-        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
-        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
-        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
-        ______ ______ ______ ______ ______ ______ ______ ______ ______  ______ ______ ______ ______ ______ ______ ______ ______ ______
-        ______ ______ ______ ______ ______        ______ ______ ______  ______ ______ ______        ______ ______ ______ ______ ______
-      >;
-      layer-id = <LAYER_Name>;
-    };
-*/
 
 // Color Hex Codes
 #define GREEN 0x00ff00
@@ -55,7 +42,7 @@
          GREEN PURPLE PURPLE PURPLE PURPLE PURPLE                                              BLUE PURPLE PURPLE PURPLE PURPLE   BLUE 
          GREEN   TEAL   TEAL   TEAL   TEAL   BLUE                                              BLUE   TEAL   TEAL   TEAL   TEAL   BLUE 
           PINK PURPLE PURPLE PURPLE PURPLE   TEAL   PINK YELLOW ______  ______ YELLOW   PINK PURPLE PURPLE PURPLE PURPLE PURPLE   PINK
-           RED   GOLD   GOLD   GOLD   GOLD          PINK   PINK   BLUE    BLUE   PINK   PINK          GOLD   GOLD   GOLD   GOLD    RED 
+           RED   GOLD   GOLD   GOLD  WHITE          PINK   PINK ______  ______   PINK   PINK          GOLD   GOLD   GOLD   GOLD    RED 
       >;
       layer-id = <OS_NIX>;
     };
@@ -68,7 +55,7 @@
         PURPLE   BLUE   BLUE   BLUE   BLUE   BLUE                                              TEAL   BLUE   BLUE   BLUE   BLUE   TEAL 
         PURPLE  GREEN  GREEN  GREEN  GREEN   TEAL                                              TEAL  GREEN  GREEN  GREEN  GREEN   TEAL 
           PINK   BLUE   BLUE   BLUE   BLUE   TEAL   PINK YELLOW ______  ______ YELLOW   PINK   BLUE   BLUE   BLUE   BLUE   BLUE   PINK
-           RED   GOLD   GOLD   GOLD   GOLD          PINK   PINK   BLUE    BLUE   PINK   PINK          GOLD   GOLD   GOLD   GOLD    RED 
+           RED   GOLD   GOLD   GOLD  WHITE          PINK   PINK ______  ______   PINK   PINK          GOLD   GOLD   GOLD   GOLD    RED 
       >;
       layer-id = <OS_OSX>;
     };
@@ -81,7 +68,7 @@
           BLUE  GREEN  GREEN  GREEN  GREEN  GREEN                                              TEAL  GREEN  GREEN  GREEN  GREEN   TEAL 
           BLUE PURPLE PURPLE PURPLE PURPLE   TEAL                                              TEAL PURPLE PURPLE PURPLE PURPLE   TEAL 
           PINK  GREEN  GREEN  GREEN  GREEN   TEAL   PINK YELLOW ______  ______ YELLOW   PINK  GREEN  GREEN  GREEN  GREEN  GREEN   PINK
-           RED   GOLD   GOLD   GOLD   GOLD          PINK   PINK   BLUE    BLUE   PINK   PINK          GOLD   GOLD   GOLD   GOLD    RED 
+           RED   GOLD   GOLD   GOLD  WHITE          PINK   PINK ______  ______   PINK   PINK          GOLD   GOLD   GOLD   GOLD    RED 
       >;
       layer-id = <OS_WIN>;
     };
@@ -164,7 +151,18 @@
       layer-id = <SYSTEM>;
     };
 
-    // emoji {};
+    // Emoji Layer 
+    emoji {
+      bindings = <
+        ______ ______ ______ ______ ______                                                          PURPLE PURPLE PURPLE PURPLE PURPLE
+        ______ ______ ______ ______ ______ ______                                              PINK   PINK   PINK   PINK   PINK   PINK
+        ______ ______ ______ ______ ______ ______                                              GOLD   GOLD   GOLD   GOLD   GOLD   GOLD
+        ______ ______ ______ ______ ______ ______                                            ORANGE ORANGE ORANGE ORANGE ORANGE ORANGE
+        ______ ______ ______ ______ ______ ______ ______ ______ ______    TEAL   TEAL   TEAL   BLUE   BLUE   BLUE   BLUE   BLUE   BLUE
+        ______ ______ ______ ______  WHITE         WHITE ______ ______  YELLOW YELLOW YELLOW         GREEN  GREEN  GREEN  GREEN  GREEN
+      >;
+      layer-id = <EMOJI>;
+    };
 
     // Control Layer
     control {

@@ -61,11 +61,14 @@ FAST_MACRO(pc_undo, &kp PC_UNDO)
 FAST_MACRO(pc_redo, &kp PC_REDO)
 
 // Select all and none
-#define SEL_ALL &kp LG(A)
+#define MAC_SEL_ALL &kp LG(A)
+#define PC_SEL_ALL &kp LG(A)
 #define SEL_NONE &kp UP &kp DOWN &kp LEFT &kp RIGHT 
 
-FAST_MACRO(sel_all, SEL_ALL)
-FAST_MACRO(sel_none, SEL_NONE)
+FAST_MACRO(mac_sel_all, MAC_SEL_ALL)
+FAST_MACRO(mac_sel_none, SEL_NONE)
+FAST_MACRO(pc_sel_all, PC_SEL_ALL)
+FAST_MACRO(pc_sel_none, SEL_NONE)
 
 // Movement, jumping and selection helper macros 
 #define MAC_WF   LA(RIGHT)
@@ -104,17 +107,13 @@ SELECT_WORD_CONT_MACRO(pc_cont_sel_wd_fwd, SEL(PC_WF))
 SELECT_WORD_CONT_MACRO(pc_cont_sel_wd_bwd, SEL(PC_WB))
 
 // Line select Macros for Mac
-SELECT_LINE_START_MACRO(mac_sel_ln_fwd, \
-  MAC_START_OF_LN, SEL(DOWN), MAC_SEL_START_OF_LN)
-SELECT_LINE_START_MACRO(mac_sel_ln_bwd, \
-  MAC_START_OF_NEXT_LN, SEL(UP), MAC_SEL_START_OF_LN)
+SELECT_LINE_START_MACRO(mac_sel_ln_fwd, MAC_START_OF_LN, SEL(DOWN), MAC_SEL_START_OF_LN)
+SELECT_LINE_START_MACRO(mac_sel_ln_bwd, MAC_START_OF_NEXT_LN, SEL(UP), MAC_SEL_START_OF_LN)
 SELECT_LINE_CONT_MACRO(mac_cont_sel_ln_fwd, SEL(DOWN), MAC_SEL_START_OF_LN)
 SELECT_LINE_CONT_MACRO(mac_cont_sel_ln_bwd, SEL(UP), MAC_SEL_START_OF_LN)
 
 // Line select Macros for PC
-SELECT_LINE_START_MACRO(pc_sel_ln_fwd, \
-  PC_START_OF_LN, SEL(DOWN), PC_SEL_START_OF_LN)
-SELECT_LINE_START_MACRO(pc_sel_ln_bwd, \
-  PC_START_OF_NEXT_LN, SEL(UP), PC_SEL_START_OF_LN)
+SELECT_LINE_START_MACRO(pc_sel_ln_fwd, PC_START_OF_LN, SEL(DOWN), PC_SEL_START_OF_LN)
+SELECT_LINE_START_MACRO(pc_sel_ln_bwd, PC_START_OF_NEXT_LN, SEL(UP), PC_SEL_START_OF_LN)
 SELECT_LINE_CONT_MACRO(pc_cont_sel_ln_fwd, SEL(DOWN), PC_SEL_START_OF_LN)
 SELECT_LINE_CONT_MACRO(pc_cont_sel_ln_bwd, SEL(UP), PC_SEL_START_OF_LN)

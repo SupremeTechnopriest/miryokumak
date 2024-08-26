@@ -4,7 +4,7 @@
 ```
 
 Technopriest's Mirokumak v3
-https://github.com/supremetechnopriest/miryokumak
+https://my.glove80.com/#/layout/user/0008d83c-c7c7-4cba-9b65-b535c8802ca0
 
 - Halmak Layout
 - Multi Operating System
@@ -13,7 +13,7 @@ https://github.com/supremetechnopriest/miryokumak
 - WM Macros
 - Vim Macros
 - Tmux Macros
-- Gitmoji & Emoji Reaction Layer
+- Emoji Reaction Layer
 - Cursor Layer (Word Selection)
 - Pure Typing (Remove Layers and Mods)
 - Gaming Layer
