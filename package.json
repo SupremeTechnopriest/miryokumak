@@ -6,10 +6,9 @@
     "build": "bun scripts/build.ts"
   },
   "devDependencies": {
-    "bun-types": "^1.0.14",
+    "@types/bun": "^1.1.6",
+    "@types/ejs": "^3.1.5",
     "ejs": "^3.1.9"
   },
-  "dependencies": {
-    "js-yaml": "^4.1.0"
-  }
+  "dependencies": {}
 }

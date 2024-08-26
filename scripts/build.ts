@@ -1,12 +1,35 @@
 import { join } from 'node:path'
-import { readFileSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { renderFile } from 'ejs'
-import { load } from 'js-yaml'
+import { gitmoji, reactions } from '../src/emoji.toml'
 
-const dist = join(__dirname, '../dist')
-const emojis = load(readFileSync(join(__dirname, '../src/emoji.yaml')))
-const behaviors = await renderFile(join(__dirname, '../src/behaviors.dsti.ejs'), { emojis })
-const deviceTree = await renderFile(join(__dirname, '../src/device-tree.dsti.ejs'))
 
-writeFileSync(join(dist, 'behaviors.dsti'), behaviors)
-writeFileSync(join(dist, 'device-tree.dsti'), deviceTree)
+const keycodeFromHexByte = (hexbyte: string) => /\d/.test(hexbyte) 
+  ? `N${hexbyte}`
+  : hexbyte.toUpperCase()
+
+const keystrokeFromKeycode = (keycode: string) => `&kp ${keycode}`
+
+function keystrokesFromUnicode (char: string) {
+  const codePoint = char.codePointAt(0)?.toString(16)
+  return codePoint?.split('').map(hexByte => {
+    const keycode = keycodeFromHexByte(hexByte)
+    return keystrokeFromKeycode(keycode)
+  }).join(' ')
+}
+
+const emojis: Record<string, string> = {}
+const unicode = [
+  ...Object.entries(gitmoji.active),
+  ...Object.entries(reactions)
+]
+
+for (const [key, value] of unicode) {
+  const keystrokes = keystrokesFromUnicode(value as string)
+  if (keystrokes) emojis[key] = keystrokes
+}
+
+const dist = join(import.meta.dir, '../dist')
+const deviceTree = await renderFile(join(import.meta.dir, '../src/device-tree.dtsi.ejs'), { emojis })
+
+writeFileSync(join(dist, 'device-tree.dtsi'), deviceTree)

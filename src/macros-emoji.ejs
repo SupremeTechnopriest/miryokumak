@@ -1,0 +1,27 @@
+<%# vim:set filetype=dts: %>
+
+// █▀▀ █▀▄▀█ █▀█ ░░█ █   █▀▄▀█ ▄▀█ █▀▀ █▀█ █▀█ █▀ 
+// ██▄ █░▀░█ █▄█ █▄█ █   █░▀░█ █▀█ █▄▄ █▀▄ █▄█ ▄█ 
+
+<% for (const [id, keystrokes] of Object.entries(emojis)) { %>
+
+FAST_MACRO(nix_emoji_<%- id %>, \
+  &macro_tap &kp LC(LS(U)) \
+  &macro_tap <%- keystrokes %> \
+  &macro_tap &kp ENTER \
+)
+
+FAST_MACRO(osx_emoji_<%- id %>, \
+  &macro_press &kp LALT \
+  &macro_tap <%- keystrokes %> \
+  &macro_release &kp LALT \
+)
+
+FAST_MACRO(win_emoji_<%- id %>, \
+  &macro_press &kp LALT \
+  &macro_tap &kp KP_PLUS \
+  &macro_tap <%- keystrokes %> \
+  &macro_release &kp LALT \
+)
+
+<% } %>

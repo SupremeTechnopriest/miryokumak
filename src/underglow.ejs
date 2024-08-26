@@ -1,0 +1,221 @@
+<%# vim:set filetype=dts: %>
+
+// █░█ █▄░█ █▀▄ █▀▀ █▀█ █▀▀ █░░ █▀█ █░█░█ 
+// █▄█ █░▀█ █▄▀ ██▄ █▀▄ █▄█ █▄▄ █▄█ ▀▄▀▄▀ 
+
+/* Empty underglow layer definition (for copy-paste)
+    mylayer {
+      bindings = <
+        ______ ______ ______ ______ ______                                                          ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______ ______ ______ ______  ______ ______ ______ ______ ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______        ______ ______ ______  ______ ______ ______        ______ ______ ______ ______ ______
+      >;
+      layer-id = <LAYER_Name>;
+    };
+*/
+
+// Color Hex Codes
+#define GREEN 0x00ff00
+#define RED 0xff0000
+#define BLUE 0x0000ff
+#define TEAL 0x008080
+#define ORANGE 0xffa500
+#define YELLOW 0xffff00
+#define GOLD 0xffd700
+#define PURPLE 0x800080
+#define PINK 0xf33a6a
+#define WHITE 0xffffff
+#define ______ 0x000000
+
+/ {
+  underglow-layer {
+    compatible = "zmk,underglow-layer";
+
+    // Base Typing
+    base {
+      bindings = <
+        YELLOW YELLOW YELLOW YELLOW YELLOW                                                          YELLOW YELLOW YELLOW YELLOW YELLOW
+          TEAL ORANGE ORANGE ORANGE ORANGE ORANGE                                            ORANGE ORANGE ORANGE ORANGE ORANGE   TEAL 
+         GREEN  WHITE  WHITE  WHITE  WHITE  WHITE                                              TEAL  WHITE  WHITE  WHITE  WHITE   TEAL 
+         GREEN  WHITE  WHITE  WHITE  WHITE   TEAL                                              TEAL  WHITE  WHITE  WHITE  WHITE   TEAL 
+         GREEN  WHITE  WHITE  WHITE  WHITE   TEAL PURPLE   GOLD   GOLD    GOLD   GOLD PURPLE  WHITE  WHITE  WHITE  WHITE  WHITE  GREEN
+           RED   GOLD   GOLD   GOLD   GOLD        PURPLE PURPLE ______  ______ PURPLE PURPLE         GREEN  GREEN  GREEN  GREEN    RED 
+      >;
+      layer-id = <BASE>;
+    };
+
+    // Linux 
+    linux {
+      bindings = <
+        YELLOW YELLOW YELLOW YELLOW YELLOW                                                          YELLOW YELLOW YELLOW YELLOW YELLOW
+          BLUE ORANGE ORANGE ORANGE ORANGE ORANGE                                            ORANGE ORANGE ORANGE ORANGE ORANGE   BLUE 
+         GREEN PURPLE PURPLE PURPLE PURPLE PURPLE                                              BLUE PURPLE PURPLE PURPLE PURPLE   BLUE 
+         GREEN   TEAL   TEAL   TEAL   TEAL   BLUE                                              BLUE   TEAL   TEAL   TEAL   TEAL   BLUE 
+          PINK PURPLE PURPLE PURPLE PURPLE   TEAL   PINK YELLOW ______  ______ YELLOW   PINK PURPLE PURPLE PURPLE PURPLE PURPLE   PINK
+           RED   GOLD   GOLD   GOLD   GOLD          PINK   PINK   BLUE    BLUE   PINK   PINK          GOLD   GOLD   GOLD   GOLD    RED 
+      >;
+      layer-id = <OS_NIX>;
+    };
+
+    // MacOS 
+    macos {
+      bindings = <
+        YELLOW YELLOW YELLOW YELLOW YELLOW                                                          YELLOW YELLOW YELLOW YELLOW YELLOW
+          TEAL ORANGE ORANGE ORANGE ORANGE ORANGE                                            ORANGE ORANGE ORANGE ORANGE ORANGE   TEAL 
+        PURPLE   BLUE   BLUE   BLUE   BLUE   BLUE                                              TEAL   BLUE   BLUE   BLUE   BLUE   TEAL 
+        PURPLE  GREEN  GREEN  GREEN  GREEN   TEAL                                              TEAL  GREEN  GREEN  GREEN  GREEN   TEAL 
+          PINK   BLUE   BLUE   BLUE   BLUE   TEAL   PINK YELLOW ______  ______ YELLOW   PINK   BLUE   BLUE   BLUE   BLUE   BLUE   PINK
+           RED   GOLD   GOLD   GOLD   GOLD          PINK   PINK   BLUE    BLUE   PINK   PINK          GOLD   GOLD   GOLD   GOLD    RED 
+      >;
+      layer-id = <OS_OSX>;
+    };
+
+    // Windows 
+    windows {
+      bindings = <
+        YELLOW YELLOW YELLOW YELLOW YELLOW                                                          YELLOW YELLOW YELLOW YELLOW YELLOW
+          TEAL ORANGE ORANGE ORANGE ORANGE ORANGE                                            ORANGE ORANGE ORANGE ORANGE ORANGE   TEAL 
+          BLUE  GREEN  GREEN  GREEN  GREEN  GREEN                                              TEAL  GREEN  GREEN  GREEN  GREEN   TEAL 
+          BLUE PURPLE PURPLE PURPLE PURPLE   TEAL                                              TEAL PURPLE PURPLE PURPLE PURPLE   TEAL 
+          PINK  GREEN  GREEN  GREEN  GREEN   TEAL   PINK YELLOW ______  ______ YELLOW   PINK  GREEN  GREEN  GREEN  GREEN  GREEN   PINK
+           RED   GOLD   GOLD   GOLD   GOLD          PINK   PINK   BLUE    BLUE   PINK   PINK          GOLD   GOLD   GOLD   GOLD    RED 
+      >;
+      layer-id = <OS_WIN>;
+    };
+    
+    // Navigation Layer 
+    navigation {
+      bindings = <
+        ______ ______ ______ ______ ______                                                          ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
+        ______ ORANGE PURPLE PURPLE ORANGE YELLOW                                            YELLOW ORANGE PURPLE PURPLE ORANGE ______
+        ______  WHITE  WHITE  WHITE  WHITE YELLOW                                            YELLOW  GREEN  GREEN  GREEN  GREEN ______
+        ______ ______ ______ ______ ______ YELLOW ______ ______ ______  ______ ______ ______ YELLOW   TEAL   TEAL   TEAL   TEAL ______
+        ______ ______ ______ ______ ______         WHITE ______    RED  ______ ______ ______        ______ ______ ______ ______ ______
+      >;
+      layer-id = <NAVIGATION>;
+    };
+
+    // Number Layer 
+    number {
+      bindings = <
+        ______ ______ ______ ______ ______                                                          ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            ORANGE ORANGE ORANGE ORANGE   TEAL   GOLD
+        ______ ORANGE PURPLE PURPLE ORANGE YELLOW                                            PURPLE  GREEN  GREEN  GREEN PURPLE   GOLD
+        ______  WHITE  WHITE  WHITE  WHITE YELLOW                                            PURPLE  GREEN  GREEN  GREEN PURPLE   GOLD
+        ______ ______  GREEN  GREEN  GREEN YELLOW ______ ______ ______    TEAL   TEAL   TEAL PURPLE  GREEN  GREEN  GREEN PURPLE   GOLD
+        ______ ______  GREEN  GREEN  GREEN        ______  WHITE    RED  ORANGE ORANGE  GREEN        ORANGE ORANGE ORANGE ORANGE   TEAL
+      >;
+      layer-id = <NUMBER>;
+    };
+
+    // Function Layer 
+    function {
+      bindings = <
+        ______ ______ ______ ______ ______                                                          ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
+        ______ ORANGE PURPLE PURPLE ORANGE YELLOW                                              GOLD  GREEN  GREEN  GREEN ORANGE ORANGE
+        ______  WHITE  WHITE  WHITE  WHITE YELLOW                                              GOLD  GREEN  GREEN  GREEN ORANGE ORANGE
+        ______ ______ ______ ______ ______ YELLOW  WHITE ______ ______  ______ ______ ______   GOLD  GREEN  GREEN  GREEN ORANGE ORANGE
+        ______ ______ ______ ______ ______        ______ ______    RED  ______ ______ ______        ______ ______ ______ ______ ______
+      >;
+      layer-id = <FUNCTION>;
+    };
+
+    // Cursor Layer 
+    cursor {
+      bindings = <
+        ______ ______ ______ ______ ______                                                          ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            YELLOW ORANGE PURPLE PURPLE ORANGE ______
+        ______  GREEN  GREEN  GREEN  GREEN   GOLD                                            YELLOW  WHITE  WHITE  WHITE  WHITE ______
+        ______   TEAL   TEAL   TEAL   TEAL   GOLD ______ ______ ______  ______ ______ ______ YELLOW ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______        ______ ______ ______     RED ______  WHITE        ______ ______ ______ ______ ______
+      >;
+      layer-id = <CURSOR>;
+    };
+
+    // Symbol Layer 
+    symbol {
+      bindings = <
+        ______ ______ ______ ______ ______                                                          ______ ______ ______ ______ ______
+        ______   PINK   TEAL   TEAL YELLOW YELLOW                                            ______ ______ ______ ______ ______ ______
+        PURPLE   TEAL   PINK   PINK   TEAL YELLOW                                            YELLOW ORANGE PURPLE PURPLE ORANGE ______
+        YELLOW YELLOW  GREEN ORANGE YELLOW YELLOW                                            YELLOW  WHITE  WHITE  WHITE  WHITE ______
+        YELLOW  GREEN  GREEN  GREEN  GREEN YELLOW PURPLE YELLOW YELLOW  ______ ______ ______ YELLOW ______ ______ ______ ______ ______
+        PURPLE ORANGE   TEAL   TEAL ORANGE        YELLOW YELLOW YELLOW     RED  WHITE ______        ______ ______ ______ ______ ______
+      >;
+      layer-id = <SYMBOL>;
+    };
+
+    // System Layer
+    system {
+      bindings = <
+        ______ ______ ______ ______ ______                                                          ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
+        ______ ______ ORANGE ORANGE ______ ______                                            YELLOW ORANGE PURPLE PURPLE ORANGE ______
+        ______   GOLD   BLUE   BLUE   GOLD  GREEN                                            YELLOW  WHITE  WHITE  WHITE  WHITE ______
+        ______ PURPLE   PINK   PINK PURPLE ______  GREEN   BLUE   TEAL  ______ ______  WHITE YELLOW ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______           RED   GOLD YELLOW     RED ______ ______        ______ ______ ______ ______ ______
+      >;
+      layer-id = <SYSTEM>;
+    };
+
+    // emoji {};
+
+    // Control Layer
+    control {
+      bindings = <
+        YELLOW YELLOW YELLOW YELLOW YELLOW                                                          YELLOW YELLOW YELLOW YELLOW YELLOW
+        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
+        ______ ORANGE ORANGE   TEAL   TEAL   PINK                                              TEAL   PINK   PINK   PINK   PINK ______
+        ______  GREEN  GREEN  GREEN  GREEN   PINK                                            ORANGE  GREEN  GREEN  GREEN  GREEN ______
+        ______    RED PURPLE PURPLE  WHITE  WHITE ______ ______ ______  ______ ______ ______ ______ ______ ______ ______ ______ ______
+           RED   GOLD   GOLD   GOLD   GOLD        ______ ______  WHITE   WHITE ______ ______        PURPLE PURPLE PURPLE    RED    RED
+      >;
+      layer-id = <CONTROL>;
+    };
+
+    // Gaming
+    gaming {
+      bindings = <
+           RED    RED    RED    RED    RED                                                             RED    RED    RED    RED    RED
+        YELLOW YELLOW  WHITE  WHITE  WHITE  WHITE                                             WHITE  WHITE  WHITE YELLOW YELLOW YELLOW
+         WHITE ORANGE ORANGE ORANGE ORANGE ORANGE                                            ORANGE ORANGE ORANGE ORANGE ORANGE YELLOW
+         WHITE PURPLE  WHITE  GREEN  WHITE  WHITE                                             WHITE  WHITE  WHITE  WHITE  WHITE  WHITE
+         WHITE   BLUE  GREEN  GREEN  GREEN  WHITE PURPLE ______ ______  ______ ______ PURPLE  WHITE  WHITE  WHITE  WHITE  WHITE YELLOW
+         WHITE   BLUE  WHITE  WHITE  WHITE        PURPLE   BLUE PURPLE   GREEN PURPLE PURPLE        YELLOW YELLOW YELLOW YELLOW   PINK
+      >;
+      layer-id = <GAMING>;
+    };
+
+    // Chat Typing
+    chat {
+      bindings = <
+        YELLOW YELLOW YELLOW YELLOW YELLOW                                                          YELLOW YELLOW YELLOW YELLOW YELLOW
+          TEAL ORANGE ORANGE ORANGE ORANGE ORANGE                                            ORANGE ORANGE ORANGE ORANGE ORANGE   TEAL 
+         GREEN  WHITE  WHITE  WHITE  WHITE  WHITE                                              TEAL  WHITE  WHITE  WHITE  WHITE   TEAL 
+         GREEN  WHITE  WHITE  WHITE  WHITE   TEAL                                              TEAL  WHITE  WHITE  WHITE  WHITE   TEAL 
+         GREEN  WHITE  WHITE  WHITE  WHITE   TEAL PURPLE   GOLD   GOLD    GOLD   GOLD PURPLE  WHITE  WHITE  WHITE  WHITE  WHITE  GREEN
+           RED   GOLD   GOLD   GOLD   GOLD        PURPLE PURPLE ______  ______ PURPLE PURPLE         GREEN  GREEN  GREEN  GREEN    RED 
+      >;
+      layer-id = <CHAT>;
+    };
+    
+    // Magic Layer 
+    magic {
+      bindings = <
+        ORANGE ______ ______ ______ ______                                                          ______ ______ ______ ______    RED
+         WHITE ______ YELLOW YELLOW YELLOW  GREEN                                            ______ ______ ______ ______ ______ ______
+        ______ ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______ ______
+          BLUE ______ ______ ______ ______ ______                                            ______ ______ ______ ______ ______   BLUE
+          TEAL ______ ______ ______ ______ ______ PURPLE PURPLE ______  ______ ______ ______ ______ ______ ______ ______ ______   TEAL
+        ______ ______ ______ ______ ______        PURPLE PURPLE   GOLD  ______ ______ ______        ______ ______ ______ ______ ______
+      >;
+      layer-id = <MAGIC>;
+    };
+  };
+};

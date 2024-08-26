@@ -1,0 +1,102 @@
+<%# vim:set filetype=dts: %>
+
+// █░░ ▄▀█ █▄█ █▀▀ █▀█ █▀ 
+// █▄▄ █▀█ ░█░ ██▄ █▀▄ ▄█ 
+
+#define BASE LAYER_Halmak 
+#define MODS LAYER_Mods
+#define OS_NIX LAYER_OS_NIX 
+#define OS_OSX LAYER_OS_OSX
+#define OS_WIN LAYER_OS_WIN
+#define MIRYOKU_PC LAYER_Miryoku_PC
+#define MIRYOKU_MAC LAYER_Miryoku_MAC
+#define NAVIGATION LAYER_Navigation
+#define NUMBER LAYER_Number
+#define FUNCTION LAYER_Function
+#define SYMBOL LAYER_Symbol
+#define SYSTEM LAYER_System
+#define CURSOR_PC LAYER_Cursor_PC
+#define CURSOR_MAC LAYER_Cursor_MAC
+#define CURSOR LAYER_Cursor
+#define EMOJI_NIX LAYER_Emoji_NIX
+#define EMOJI_OSX LAYER_Emoji_OSX
+#define EMOJI_WIN LAYER_Emoji_WIN
+#define EMOJI LAYER_Emoji
+#define CONTROL_PC LAYER_Control_PC
+#define CONTROL_MAC LAYER_Control_MAC 
+#define CONTROL LAYER_Control 
+#define GAMING LAYER_Gaming
+#define CHAT LAYER_Chat
+#define MAGIC LAYER_Magic
+
+#define BASE_LAYERS BASE OS_NIX OS_OSX OS_WIN GAMING
+
+#define LAYER_CONDITION(NAME, IF, THEN) \
+  NAME { \
+    if-layers = <IF>; \
+    then-layer = <THEN>; \
+  };
+
+#define LAYER_COMBO(NAME, KEY_POSITIONS, BINDINGS) \
+  COMBO(NAME, COMBO_TIMEOUT, KEY_POSITIONS, BASE_LAYERS, BINDINGS)
+
+/ {
+  conditional_layers {
+    compatible = "zmk,conditional-layers";
+
+    // Mod Layer
+    LAYER_CONDITION(mod_nix, OS_NIX, MODS)
+    LAYER_CONDITION(mod_win, OS_WIN, MODS)
+    LAYER_CONDITION(mod_osx, OS_OSX, MODS)
+
+    // Navigation Layer
+    LAYER_CONDITION(navigation_nix, OS_NIX NAVIGATION, MIRYOKU_PC)
+    LAYER_CONDITION(navigation_win, OS_WIN NAVIGATION, MIRYOKU_PC)
+    LAYER_CONDITION(navigation_osx, OS_OSX NAVIGATION, MIRYOKU_MAC)
+
+    // Number Layer
+    LAYER_CONDITION(number_nix, OS_NIX NUMBER, MIRYOKU_PC)
+    LAYER_CONDITION(number_win, OS_WIN NUMBER, MIRYOKU_PC)
+    LAYER_CONDITION(number_osx, OS_OSX NUMBER, MIRYOKU_MAC)
+
+    // Function Layer
+    LAYER_CONDITION(function_nix, OS_NIX FUNCTION, MIRYOKU_PC)
+    LAYER_CONDITION(function_win, OS_WIN FUNCTION, MIRYOKU_PC)
+    LAYER_CONDITION(function_osx, OS_OSX FUNCTION, MIRYOKU_MAC)
+
+    // Symbol Layer
+    LAYER_CONDITION(symbol_nix, OS_NIX SYMBOL, MIRYOKU_PC)
+    LAYER_CONDITION(symbol_win, OS_WIN SYMBOL, MIRYOKU_PC)
+    LAYER_CONDITION(symbol_osx, OS_OSX SYMBOL, MIRYOKU_MAC)
+
+    // System Layer
+    LAYER_CONDITION(system_nix, OS_NIX SYSTEM, MIRYOKU_PC)
+    LAYER_CONDITION(system_win, OS_WIN SYSTEM, MIRYOKU_PC)
+    LAYER_CONDITION(system_osx, OS_OSX SYSTEM, MIRYOKU_MAC)
+
+    // Cursor Layer
+    LAYER_CONDITION(cursor_nix, OS_NIX CURSOR, CURSOR_PC)
+    LAYER_CONDITION(cursor_win, OS_WIN CURSOR, CURSOR_PC)
+    LAYER_CONDITION(cursor_osx, OS_OSX CURSOR, CURSOR_MAC)
+
+    LAYER_CONDITION(cursor_pc, CURSOR_PC, MIRYOKU_PC)
+    LAYER_CONDITION(cursor_mac, CURSOR_MAC, MIRYOKU_MAC)
+
+    // Control Layer
+    LAYER_CONDITION(control_nix, OS_NIX CONTROL, CONTROL_PC)
+    LAYER_CONDITION(control_win, OS_WIN CONTROL, CONTROL_PC)
+    LAYER_CONDITION(control_osx, OS_OSX CONTROL, CONTROL_MAC)
+    
+    // Emoji Layer
+    LAYER_CONDITION(emoji_nix, OS_NIX EMOJI, EMOJI_NIX)
+    LAYER_CONDITION(emoji_win, OS_WIN EMOJI, EMOJI_WIN)
+    LAYER_CONDITION(emoji_osx, OS_OSX EMOJI, EMOJI_OSX)
+  };
+
+  combos {
+    compatible = "zmk,combos";
+
+    // Gaming Layer Toggle Combo
+    LAYER_COMBO(gaming, 54 55, &tog GAMING)
+  };
+};

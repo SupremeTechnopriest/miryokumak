@@ -1,0 +1,120 @@
+<%# vim:set filetype=dts: %>
+
+// █▀▀ █░█ █▀█ █▀ █▀█ █▀█   █▀▄▀█ ▄▀█ █▀▀ █▀█ █▀█ █▀ 
+// █▄▄ █▄█ █▀▄ ▄█ █▄█ █▀▄   █░▀░█ █▀█ █▄▄ █▀▄ █▄█ ▄█ 
+
+
+#define SELECT_HELPER(NAME, ENTRY, SELECTION_BINDING, EXIT) \
+  FAST_MACRO(NAME, \
+    ENTRY \
+    &macro_press SELECTION_BINDING \
+    &macro_pause_for_release \
+    &macro_release SELECTION_BINDING \
+    EXIT \
+  )
+
+/* Select word start Macro helper */
+#define SELECT_WORD_START_MACRO(NAME, SETUP_BINDINGS, SELECTION_BINDING) \
+  SELECT_HELPER(NAME, &macro_tap SETUP_BINDINGS, SELECTION_BINDING, \
+    /* No CLEANUP */)
+
+/* Select line start Macro helper */
+#define SELECT_LINE_START_MACRO(NAME, SETUP_BINDINGS, SELECTION_BINDING, CLEANUP_BINDINGS) \
+  SELECT_HELPER(NAME, &macro_tap SETUP_BINDINGS, SELECTION_BINDING, \
+    &macro_tap CLEANUP_BINDINGS)
+
+/* Select word continue Macro helper */
+#define SELECT_WORD_CONT_MACRO(NAME, SELECTION_BINDING) \
+  SELECT_HELPER(NAME, /* No SETUP */, SELECTION_BINDING, /* No CLEANUP */)
+
+/* Select line continue Macro helper */
+#define SELECT_LINE_CONT_MACRO(NAME, SELECTION_BINDING, CLEANUP_BINDINGS) \
+  SELECT_HELPER(NAME, /* No SETUP */, SELECTION_BINDING, \
+    &macro_tap CLEANUP_BINDINGS)
+
+// Copy, Cut, Paste
+#define MAC_COPY LG(C)
+#define MAC_CUT LG(X)
+#define MAC_PASTE LG(V)
+#define PC_COPY LC(C)
+#define PC_CUT LC(X)
+#define PC_PASTE LC(V)
+
+FAST_MACRO(mac_copy, &kp MAC_COPY)
+FAST_MACRO(mac_cut, &kp MAC_CUT)
+FAST_MACRO(mac_paste, &kp MAC_PASTE)
+
+FAST_MACRO(pc_copy, &kp PC_COPY)
+FAST_MACRO(pc_cut, &kp PC_CUT)
+FAST_MACRO(pc_paste, &kp PC_PASTE)
+
+// Undo Redo
+#define MAC_UNDO LG(Z)
+#define MAC_REDO LG(LS(Z))
+#define PC_UNDO LC(Z)
+#define PC_REDO LC(LS(Z))
+
+FAST_MACRO(mac_undo, &kp MAC_UNDO)
+FAST_MACRO(mac_redo, &kp MAC_REDO)
+
+FAST_MACRO(pc_undo, &kp PC_UNDO)
+FAST_MACRO(pc_redo, &kp PC_REDO)
+
+// Select all and none
+#define SEL_ALL &kp LG(A)
+#define SEL_NONE &kp UP &kp DOWN &kp LEFT &kp RIGHT 
+
+FAST_MACRO(sel_all, SEL_ALL)
+FAST_MACRO(sel_none, SEL_NONE)
+
+// Movement, jumping and selection helper macros 
+#define MAC_WF   LA(RIGHT)
+#define MAC_WB   LA(LEFT)
+#define MAC_HOME LG(LEFT)
+#define PC_WF    LC(RIGHT)
+#define PC_WB    LC(LEFT)
+#define PC_HOME  HOME
+#define SEL(MOVEMENT) &kp LS(MOVEMENT)
+
+// Jump to start or end of word regardless of cursor position
+#define MAC_START_OF_WD &kp MAC_WF &kp MAC_WB
+#define MAC_END_OF_WD &kp MAC_WB &kp MAC_WF
+#define PC_START_OF_WD &kp PC_WF &kp PC_WB
+#define PC_END_OF_WD &kp PC_WB &kp PC_WF
+
+// We use LG(LEFT) / HOME twice to avoid an issue with IDEs being too smart and
+// placing the cursor after the indenting whitespace
+#define MAC_START_OF_LN &kp MAC_HOME &kp MAC_HOME
+#define MAC_START_OF_NEXT_LN &kp DOWN &kp MAC_HOME &kp MAC_HOME
+#define MAC_SEL_START_OF_LN SEL(MAC_HOME) SEL(MAC_HOME)
+#define PC_START_OF_LN &kp PC_HOME &kp PC_HOME
+#define PC_START_OF_NEXT_LN &kp DOWN &kp PC_HOME &kp PC_HOME
+#define PC_SEL_START_OF_LN SEL(PC_HOME) SEL(PC_HOME)
+
+// Word select Macros for Mac
+SELECT_WORD_START_MACRO(mac_sel_wd_fwd, MAC_START_OF_WD, SEL(MAC_WF))
+SELECT_WORD_START_MACRO(mac_sel_wd_bwd, MAC_END_OF_WD, SEL(MAC_WB))
+SELECT_WORD_CONT_MACRO(mac_cont_sel_wd_fwd, SEL(MAC_WF))
+SELECT_WORD_CONT_MACRO(mac_cont_sel_wd_bwd, SEL(MAC_WB))
+
+// Word select Macros for PC
+SELECT_WORD_START_MACRO(pc_sel_wd_fwd, PC_START_OF_WD, SEL(PC_WF))
+SELECT_WORD_START_MACRO(pc_sel_wd_bwd, PC_END_OF_WD, SEL(PC_WB))
+SELECT_WORD_CONT_MACRO(pc_cont_sel_wd_fwd, SEL(PC_WF))
+SELECT_WORD_CONT_MACRO(pc_cont_sel_wd_bwd, SEL(PC_WB))
+
+// Line select Macros for Mac
+SELECT_LINE_START_MACRO(mac_sel_ln_fwd, \
+  MAC_START_OF_LN, SEL(DOWN), MAC_SEL_START_OF_LN)
+SELECT_LINE_START_MACRO(mac_sel_ln_bwd, \
+  MAC_START_OF_NEXT_LN, SEL(UP), MAC_SEL_START_OF_LN)
+SELECT_LINE_CONT_MACRO(mac_cont_sel_ln_fwd, SEL(DOWN), MAC_SEL_START_OF_LN)
+SELECT_LINE_CONT_MACRO(mac_cont_sel_ln_bwd, SEL(UP), MAC_SEL_START_OF_LN)
+
+// Line select Macros for PC
+SELECT_LINE_START_MACRO(pc_sel_ln_fwd, \
+  PC_START_OF_LN, SEL(DOWN), PC_SEL_START_OF_LN)
+SELECT_LINE_START_MACRO(pc_sel_ln_bwd, \
+  PC_START_OF_NEXT_LN, SEL(UP), PC_SEL_START_OF_LN)
+SELECT_LINE_CONT_MACRO(pc_cont_sel_ln_fwd, SEL(DOWN), PC_SEL_START_OF_LN)
+SELECT_LINE_CONT_MACRO(pc_cont_sel_ln_bwd, SEL(UP), PC_SEL_START_OF_LN)

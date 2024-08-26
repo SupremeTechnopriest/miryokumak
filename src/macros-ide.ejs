@@ -1,0 +1,32 @@
+<%# vim:set filetype=dts: %>
+
+// █ █▀▄ █▀▀   █▀▄▀█ ▄▀█ █▀▀ █▀█ █▀█ █▀ 
+// █ █▄▀ ██▄   █░▀░█ █▀█ █▄▄ █▀▄ █▄█ ▄█ 
+
+FAST_MACRO1(vim_leader, \
+  &macro_tap &kp SPACE \
+  &macro_param_1to1 \
+  &kp MACRO_PLACEHOLDER \
+)
+
+FAST_MACRO1(vim_window, \
+  &macro_tap &kp SPACE \
+  &macro_tap &kp W \
+  &macro_param_1to1 \
+  &kp MACRO_PLACEHOLDER \
+)
+
+FAST_MACRO1(vim_split, \
+  &macro_tap &kp SPACE \
+  &macro_tap &kp SPACE \
+  &macro_param_1to1 \
+  &kp MACRO_PLACEHOLDER \
+)
+
+FAST_MACRO1(tmux_leader,
+  &macro_press &kp LCTRL \
+  &macro_tap &kp SPACE \
+  &macro_release &kp LCTRL \
+  &macro_param_1to1 \
+  &macro_tap &kp MACRO_PLACEHOLDER 
+)

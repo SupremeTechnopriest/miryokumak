@@ -1,16 +1,20 @@
-# Technopriest's Mirokumak v2
+```
+█▀▄▀█ █ █▀█ █▀█ █▄▀ █░█ █▀▄▀█ ▄▀█ █▄▀ 
+█░▀░█ █ █▀▄ █▄█ █░█ █▄█ █░▀░█ █▀█ █░█
+```
 
-> Inspired by @sunaku's Glorious Engrammer
-> https://github.com/sunaku/glove80-keymaps
+Technopriest's Mirokumak v3
+https://github.com/supremetechnopriest/miryokumak
 
-- Miryoku Style Layers
 - Halmak Layout
+- Multi Operating System
+- Miryoku Style Layers
 - Home Row Mods
+- WM Macros
+- Vim Macros
 - Tmux Macros
-- i3 Shortcuts
-- Vim Shortcuts
-- Pure Typing (Remove Layers and Mods)
 - Gitmoji & Emoji Reaction Layer
 - Cursor Layer (Word Selection)
-- Gaming
-- Optional Mouse Keys
+- Pure Typing (Remove Layers and Mods)
+- Gaming Layer
+- RGB Indicators

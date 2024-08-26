@@ -1,96 +1,64 @@
 <%# vim:set filetype=dts: %>
 
-  /*
-  ╭──────────────────────────────────────────────────────────╮
-  │ Home Row Mods                                            │
-  ╰──────────────────────────────────────────────────────────╯
-  */
+// █░█ █▀█ █▀▄▀█ █▀▀   █▀█ █▀█ █░█░█   █▀▄▀█ █▀█ █▀▄ █▀ 
+// █▀█ █▄█ █░▀░█ ██▄   █▀▄ █▄█ ▀▄▀▄▀   █░▀░█ █▄█ █▄▀ ▄█ 
 
-  #ifndef HOMEY_HOLDING_TYPE
-  #define HOMEY_HOLDING_TYPE "tap-preferred"
-  #endif
+#define HOME_ROW_MOD_HELPER(NAME, KEY_POSITIONS, TAP) \
+  TAP_PREFERRED_HOLD_TAP(NAME, \
+    tapping-term-ms = <HRM_HOLD_TIME>; \
+    quick-tap-ms = <HRM_REPEAT_TIME>; \
+    require-prior-idle-ms = <HRM_IDLE_TIME>; \
+    hold-trigger-key-positions = <KEY_POSITIONS>; \
+    hold-trigger-on-release; \
+    bindings = <&kp>, <TAP>; \
+  )
 
-  #ifndef HOMEY_HOLDING_TIME
-  #define HOMEY_HOLDING_TIME 270 // TAPPING_TERM + ALLOW_CROSSOVER_AFTER
-  #endif
+#define HOME_ROW_MOD_SHIFT_HELPER(NAME, KEY_POSITIONS, TAP) \
+  TAP_PREFERRED_HOLD_TAP(NAME, \
+    tapping-term-ms = <HRM_HOLD_TIME>; \
+    quick-tap-ms = <HRM_REPEAT_TIME>; \
+    require-prior-idle-ms = <HRM_IDLE_TIME>; \
+    hold-trigger-key-positions = <KEY_POSITIONS>; \
+    bindings = <&kp>, <TAP>; \
+  )
 
-  #ifndef HOMEY_STREAK_DECAY
-  #define HOMEY_STREAK_DECAY 170 // global-quick-tap-ms
-  #endif
+#define LEFT_HAND_KEYS  \
+   0  1  2  3  4        \
+  10 11 12 13 14 15     \
+  22 23 24 25 26 27     \
+  34 35 36 37 38 39     \
+  46 47 48 49 50 51     \
+  64 65 66 67 68
 
-  #ifndef HOMEY_REPEAT_DECAY
-  #define HOMEY_REPEAT_DECAY 300 // "tap then hold" for key auto-repeat
-  #endif
+#define RIGHT_HAND_KEYS \
+      5  6  7  8  9     \
+  16 17 18 19 20 21     \
+  28 29 30 31 32 33     \
+  40 41 42 43 44 45     \
+  58 59 60 61 62 63     \
+  75 76 77 78 79
 
-  #ifndef SHIFT_HOLDING_TYPE
-  #define SHIFT_HOLDING_TYPE "tap-preferred"
-  #endif
+#define THUMB_KEYS   \
+  69 52       57 74  \
+   70 53     56 73   \
+    71 54   55 72
 
-  #ifndef SHIFT_HOLDING_TIME
-  #define SHIFT_HOLDING_TIME 170
-  #endif
+// Shift Mods
+#define HOME_ROW_MOD_SHIFT_LH(NAME, TAP) \
+  HOME_ROW_MOD_SHIFT_HELPER(NAME, RIGHT_HAND_KEYS THUMB_KEYS, TAP)
 
-  #ifndef SHIFT_STREAK_DECAY
-  #define SHIFT_STREAK_DECAY 70 // global-quick-tap-ms
-  #endif
+#define HOME_ROW_MOD_SHIFT_RH(NAME, TAP) \
+  HOME_ROW_MOD_SHIFT_HELPER(NAME, LEFT_HAND_KEYS THUMB_KEYS, TAP)
 
-  #ifndef SHIFT_REPEAT_DECAY
-  #define SHIFT_REPEAT_DECAY 300 // "tap then hold" for key auto-repeat
-  #endif
+HOME_ROW_MOD_SHIFT_LH(lhrsm, &kp)
+HOME_ROW_MOD_SHIFT_RH(rhrsm, &kp)
 
-  // Home row mod-tap keys for all except index fingers
+// Other Mods 
+#define HOME_ROW_MOD_LH(NAME, TAP) \
+  HOME_ROW_MOD_HELPER(NAME, RIGHT_HAND_KEYS THUMB_KEYS, TAP)
 
-  homey_left: miryoku_home_row_mods_left_hand {
-    compatible = "zmk,behavior-hold-tap";
-    label = "HOME_ROW_MODS_LEFT_HAND";
-    flavor = HOMEY_HOLDING_TYPE;
-    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
-    hold-trigger-on-release; // wait for other home row mods
-    tapping-term-ms = <HOMEY_HOLDING_TIME>;
-    quick-tap-ms = <HOMEY_REPEAT_DECAY>;
-    require-prior-idle-ms = <HOMEY_STREAK_DECAY>;
-    #binding-cells = <2>;
-    bindings = <&kp>, <&kp>;
-  };
+#define HOME_ROW_MOD_RH(NAME, TAP) \
+  HOME_ROW_MOD_HELPER(NAME, LEFT_HAND_KEYS THUMB_KEYS, TAP)
 
-  homey_right: miryoku_home_row_mods_right_hand {
-    compatible = "zmk,behavior-hold-tap";
-    label = "HOME_ROW_MODS_RIGHT_HAND";
-    flavor = HOMEY_HOLDING_TYPE;
-    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
-    hold-trigger-on-release; // wait for other home row mods
-    tapping-term-ms = <HOMEY_HOLDING_TIME>;
-    quick-tap-ms = <HOMEY_REPEAT_DECAY>;
-    require-prior-idle-ms = <HOMEY_STREAK_DECAY>;
-    #binding-cells = <2>;
-    bindings = <&kp>, <&kp>;
-  };
-
-  // Special home row mod-tap keys for the index fingers
-
-  shift_left: miryoku_home_row_mods_left_shift_shift {
-    compatible = "zmk,behavior-hold-tap";
-    label = "HOME_ROW_MODS_LEFT_SHIFT_SHIFT";
-    flavor = SHIFT_HOLDING_TYPE;
-    hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
-    // hold-trigger-on-release; // don't wait for other mods
-    tapping-term-ms = <SHIFT_HOLDING_TIME>;
-    quick-tap-ms = <SHIFT_REPEAT_DECAY>;
-    require-prior-idle-ms = <SHIFT_STREAK_DECAY>;
-    #binding-cells = <2>;
-    bindings = <&kp>, <&kp>;
-  };
-
-  shift_right: miryoku_home_row_mods_right_shift_shift {
-    compatible = "zmk,behavior-hold-tap";
-    label = "HOME_ROW_MODS_RIGHT_SHIFT_SHIFT";
-    flavor = SHIFT_HOLDING_TYPE;
-    hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
-    // hold-trigger-on-release; // don't wait for other mods
-    tapping-term-ms = <SHIFT_HOLDING_TIME>;
-    quick-tap-ms = <SHIFT_REPEAT_DECAY>;
-    require-prior-idle-ms = <SHIFT_STREAK_DECAY>;
-    #binding-cells = <2>;
-    bindings = <&kp>, <&kp>;
-  };
-
+HOME_ROW_MOD_LH(lhrm, &kp)
+HOME_ROW_MOD_RH(rhrm, &kp)
