@@ -5,7 +5,6 @@
 
 Technopriest's Mirokumak v3
 
-> https://github.com/supremetechnopriest/miryokumak
 > https://my.glove80.com/#/layout/user/d3556fe6-ff88-43ce-8ca5-7a9f7155fcfb
 
 - Halmak Layout
